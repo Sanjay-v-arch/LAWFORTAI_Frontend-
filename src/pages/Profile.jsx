@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-    const { user, logout, login } = useAuth();
+    const { user, logout, updateUser } = useAuth();
     const navigate = useNavigate();
 
     // Mock data for demonstration if no user is logged in
@@ -33,24 +33,15 @@ const Profile = () => {
         switch (role?.toLowerCase()) {
             case 'police':
                 return {
-                    gradient: 'from-blue-600 to-cyan-500',
-                    shadow: 'shadow-blue-500/20',
-                    badge: 'bg-blue-100 text-blue-700',
-                    border: 'border-blue-200'
+                    badge: 'bg-blue-100 text-blue-700'
                 };
             case 'legal':
                 return {
-                    gradient: 'from-purple-600 to-pink-500',
-                    shadow: 'shadow-purple-500/20',
-                    badge: 'bg-purple-100 text-purple-700',
-                    border: 'border-purple-200'
+                    badge: 'bg-purple-100 text-purple-700'
                 };
             default: // Citizen
                 return {
-                    gradient: 'from-yellow-400 to-orange-500',
-                    shadow: 'shadow-orange-500/20',
-                    badge: 'bg-orange-100 text-orange-700',
-                    border: 'border-orange-200'
+                    badge: 'bg-orange-100 text-orange-700'
                 };
         }
     };
@@ -58,13 +49,11 @@ const Profile = () => {
     const theme = getRoleTheme(activeUser.role);
 
     const handleRoleSwitch = (newRole) => {
-        const updatedUser = { ...activeUser, role: newRole };
-        setActiveUser(updatedUser);
-        // Also update context if we were using it properly
+        const updated = { ...activeUser, role: newRole };
+        setActiveUser(updated);
+
         if (user) {
-            // logic to update context would go here
-            // verify if login updates state
-            login(updatedUser);
+            updateUser({ role: newRole });
         }
     };
 

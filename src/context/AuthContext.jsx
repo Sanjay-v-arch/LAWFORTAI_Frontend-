@@ -20,11 +20,15 @@ export const AuthProvider = ({ children }) => {
     const login = (userData) => {
         setUser(userData);
         localStorage.setItem('user', JSON.stringify(userData));
+        if (userData.token) localStorage.setItem('token', userData.token);
+        if (userData.role) localStorage.setItem('role', userData.role);
     };
 
     const logout = () => {
         setUser(null);
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
     };
 
     const updateUser = (updates) => {

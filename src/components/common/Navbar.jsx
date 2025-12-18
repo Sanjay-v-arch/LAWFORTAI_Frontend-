@@ -4,9 +4,12 @@ import { Shield, Menu, X, MessageSquare, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 
+import { useChat } from '../../context/ChatContext';
+
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
+    const { toggleChat } = useChat();
 
     const navLinks = [
         { name: 'Home', path: '/' },
@@ -44,7 +47,9 @@ const Navbar = () => {
                         ))}
 
                         {/* Cyber Chat Button */}
-                        <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                        <button
+                            onClick={toggleChat}
+                            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                             <MessageSquare size={16} />
                             <span className="hidden lg:inline">Cyber Chat</span>
                         </button>
@@ -95,7 +100,12 @@ const Navbar = () => {
                                 Profile
                             </Link>
                             <div className="pt-4">
-                                <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-medium shadow-md">
+                                <button
+                                    onClick={() => {
+                                        setIsOpen(false);
+                                        toggleChat();
+                                    }}
+                                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-medium shadow-md">
                                     <MessageSquare size={18} />
                                     Cyber Chat
                                 </button>

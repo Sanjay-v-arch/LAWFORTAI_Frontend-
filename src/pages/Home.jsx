@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import { Shield, Book, Globe, ArrowRight, Gavel, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+import { useChat } from '../context/ChatContext';
+
 const Home = () => {
+    const { toggleChat, isOpen } = useChat(); // Added isOpen check optionally if needed to sync state, but toggle is enough
     const features = [
         {
             icon: Book,
@@ -71,7 +74,9 @@ const Home = () => {
                                 Explore Laws
                                 <ArrowRight className="ml-2 -mr-1" size={20} />
                             </Link>
-                            <button className="inline-flex items-center justify-center px-8 py-3 border border-gray-300 dark:border-slate-700 text-base font-medium rounded-full text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 shadow-sm hover:shadow-md transition-all duration-300">
+                            <button
+                                onClick={toggleChat}
+                                className="inline-flex items-center justify-center px-8 py-3 border border-gray-300 dark:border-slate-700 text-base font-medium rounded-full text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 shadow-sm hover:shadow-md transition-all duration-300">
                                 Ask Assistant
                             </button>
                         </div>
