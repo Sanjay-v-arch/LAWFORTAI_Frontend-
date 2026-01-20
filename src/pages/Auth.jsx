@@ -90,7 +90,7 @@ const Auth = () => {
         e.preventDefault();
         try {
             const payload = {
-                contact: formData.contact,
+                contact: formData.contact.trim(),
                 password: formData.password
             };
             const data = await post('/api/auth/login', payload);

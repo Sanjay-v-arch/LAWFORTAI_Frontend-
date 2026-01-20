@@ -35,9 +35,11 @@ const Profile = () => {
                 return {
                     badge: 'bg-blue-100 text-blue-700'
                 };
-            case 'legal':
+            case 'lawyer':
                 return {
-                    badge: 'bg-purple-100 text-purple-700'
+                    bg: 'bg-yellow-50 dark:bg-yellow-900/20',
+                    text: 'text-yellow-700 dark:text-yellow-400',
+                    border: 'border-yellow-200 dark:border-yellow-800'
                 };
             default: // Citizen
                 return {
@@ -116,7 +118,10 @@ const Profile = () => {
                     </div>
 
                     {/* Actions */}
-                    <div className="md:pt-24 w-full md:w-auto flex justify-center">
+                    <div className="md:pt-24 w-full md:w-auto flex flex-col md:flex-row gap-4 items-center justify-center">
+                        <button onClick={() => navigate('/cyber-portal')} className="px-8 py-3 bg-blue-600 border border-blue-600 rounded-xl text-white font-semibold hover:bg-blue-700 flex items-center gap-2 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                            <Shield size={20} /> Open Cyber Response Portal
+                        </button>
                         <button onClick={handleLogout} className="px-8 py-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-red-600 font-semibold hover:bg-red-50 dark:hover:bg-slate-700/50 flex items-center gap-2 transition-all shadow-sm hover:shadow-md">
                             <LogOut size={20} /> Logout
                         </button>
